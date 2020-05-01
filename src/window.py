@@ -48,12 +48,14 @@ class Window():
 					return
 				self.selected_cell = cell
 				self.moving_cells = board.get_moves(cell)
+				self.attacking_cells = board.get_attacks(cell)
 				return
 		
 			if cell in self.moving_cells:
 				board.move_unit(self.selected_cell, cell)
 				self.selected_cell = None
 				self.moving_cells = []
+				self.attacking_cells = []
 	
 	def display(self):
 		self.win.fill((0,0,0))
@@ -72,6 +74,8 @@ class Window():
 					color = (150,255,150)
 				elif self.selected_cell == (r,c):
 					color = (150,150,255)
+				elif (r,c) in self.attacking_cells:
+					color = (255,150,150)
 				else:
 					color = (255,255,255)
 				pygame.draw.rect(self.win, color, (m+(m+cs)*c, m+(m+cs)*r, cs, cs))

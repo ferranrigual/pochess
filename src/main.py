@@ -19,6 +19,8 @@ if __name__ == "__main__":
 
 	warrior = Warrior((4, 1))
 	board.add_unit(warrior)
+	warrior = Warrior((5, 4))
+	board.add_unit(warrior)
 	#~ archer = Archer((2, 2))
 	#~ board.units.append(archer)
 

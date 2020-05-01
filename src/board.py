@@ -41,11 +41,36 @@ class Board():
 		
 		return dests
 
+	def get_attacks(self, cell):
+		r, c = cell
+		unit = self.cells[r][c]
+		if unit == None:
+			raise Exception("Can not get attacks. Cell is empty")
+		
+		attacks = unit.get_attacks()
+		
+		targets = []
+		for attack in attacks:
+			dr = r + attack[0]
+			dc = c + attack[1]
+			
+			# check bounds
+			if dr < 0 or dc < 0 or dr >= self.size or dc >= self.size:
+				continue
+			
+			# check empty
+			if self.cells[dr][dc] == None:
+				continue
+			
+			targets.append((dr, dc))
+		
+		return targets
+
 	def add_unit(self, unit):
 		pos = unit.pos
 		r, c = pos
 		if self.cells[r][c] != None:
-			raise "Can not add unit. Cell is not empty"
+			raise Exception("Can not add unit. Cell is not empty")
 		self.cells[r][c] = unit
 	
 	def move_unit(self, orig, dest):

@@ -11,3 +11,7 @@ class Unit(ABC):
 	def get_moves(self):
 		pass
 	
+	@abstractmethod
+	def get_attacks(self):
+		pass
+	
