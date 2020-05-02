@@ -1,4 +1,5 @@
 from unit import Unit
+from referee import referee
 
 class Board():
 	
@@ -19,9 +20,12 @@ class Board():
 		r, c = cell
 		unit = self.cells[r][c]
 		if unit == None:
-			print("WARN", r, c)
-			return []
+			raise Exception("Can not get moves. Cell is empty")
 		
+		# check if it's this unit's turn
+		if unit.team != referee.get_current_team():
+			return []
+
 		moves = unit.get_moves()
 		
 		dests = []
@@ -47,10 +51,12 @@ class Board():
 		if unit == None:
 			raise Exception("Can not get attacks. Cell is empty")
 		
-		attacks = unit.get_attacks()
+		# check if it's this unit's turn
+		if unit.team != referee.get_current_team():
+			return []
 		
 		targets = []
-		for attack in attacks:
+		for attack in unit.get_attacks():
 			dr = r + attack[0]
 			dc = c + attack[1]
 			
@@ -84,12 +90,14 @@ class Board():
 			raise Exception("Can not move unit. Orig is empty")
 		if self.get_unit(dest) != None:
 			raise Exception("Can not move unit. Dest is not empty")
-		
+
 		unit.pos = dest
 		r, c = orig
 		self.cells[r][c] = None
 		r, c = dest
 		self.cells[r][c] = unit
+		
+		referee.spent_action()
 	
 	def attack_unit(self, orig, dest):
 		unit = self.get_unit(orig)
@@ -104,6 +112,9 @@ class Board():
 		unit.attack(dest_unit)
 		if dest_unit.hp <= 0:
 			self.cells[r][c] = None
+		
+		referee.spent_action()
+
 	
 	def __str__(self):
 		for r in range(self.size):

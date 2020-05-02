@@ -1,5 +1,6 @@
 from board import board
 from unit import Unit
+from referee import referee
 
 import pygame
 
@@ -17,7 +18,7 @@ class Window():
 		super().__init__()
 		self.win = None
 
-		self.w = 480
+		self.w = 640
 		self.h = 480
 		self.margin = 2
 
@@ -33,6 +34,8 @@ class Window():
 		self.win = pygame.display.set_mode((self.w, self.h))
 		
 		self.img_dict = init_image_dict()
+		
+		self.board_right_end = board.size*(self.margin+self.cell_size) + self.margin
 	
 	def get_cell_from_pos(self, pos):
 		x, y = pos
@@ -76,6 +79,7 @@ class Window():
 		self.win.fill((0,0,0))
 		
 		self.display_board()
+		self.display_game_info()
 		
 		pygame.display.update()
 
@@ -120,3 +124,16 @@ class Window():
 		text = font.render(str(unit.hp), True, color)
 		text_pos = px, py
 		self.win.blit(text, text_pos)
+
+	def display_game_info(self):
+		color = (255,255,255)
+		font = pygame.font.SysFont(None, 20)
+
+		text = font.render("Current turn: {}".format(referee.current_turn), True, color)
+		text_pos = self.board_right_end, self.margin
+		self.win.blit(text, text_pos)
+
+		text = font.render("Pending actions: {}".format(referee.get_pending_actions()), True, color)
+		text_pos = self.board_right_end, 2*self.margin + text.get_height()
+		self.win.blit(text, text_pos)
+
