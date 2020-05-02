@@ -47,6 +47,9 @@ if __name__ == "__main__":
 			else:
 				window.handle_event(event)
 
+		if board.is_game_ended():
+			run = False
+
 		window.display()
 
 	pygame.quit()

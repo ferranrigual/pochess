@@ -18,6 +18,7 @@ class Referee():
 	
 	def get_pending_actions(self):
 		return self.actions_per_turn - self.current_action
-		
+	
+	
 referee = Referee()
 

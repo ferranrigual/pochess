@@ -115,7 +115,16 @@ class Board():
 		
 		referee.spent_action()
 
-	
+	def is_game_ended(self):
+		surviving_teams = set()
+		for r in range(self.size):
+			for c in range(self.size):
+				unit = self.cells[r][c]
+				if unit == None:
+					continue
+				surviving_teams.add(unit.team)
+		return len(surviving_teams) == 1
+		
 	def __str__(self):
 		for r in range(self.size):
 			for c in range(self.size):
