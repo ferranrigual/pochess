@@ -87,6 +87,17 @@ class Board():
 		r, c = dest
 		self.cells[r][c] = unit
 	
+	def attack_unit(self, orig, dest):
+		unit = self.get_unit(orig)
+		
+		if unit == None:
+			raise Exception("Can not attack unit. Orig is empty")
+		if self.get_unit(dest) == None:
+			raise Exception("Can not attack unit. Dest is empty")
+		
+		r, c = dest
+		self.cells[r][c] = None
+	
 	def __str__(self):
 		for r in range(self.size):
 			for c in range(self.size):

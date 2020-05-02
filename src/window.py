@@ -56,6 +56,19 @@ class Window():
 				self.selected_cell = None
 				self.moving_cells = []
 				self.attacking_cells = []
+				return
+			
+			if cell in self.attacking_cells:
+				board.attack_unit(self.selected_cell, cell)
+				self.selected_cell = None
+				self.moving_cells = []
+				self.attacking_cells = []
+				return
+			
+			self.selected_cell = None
+			self.moving_cells = []
+			self.attacking_cells = []
+			
 	
 	def display(self):
 		self.win.fill((0,0,0))
