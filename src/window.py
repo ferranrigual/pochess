@@ -109,3 +109,12 @@ class Window():
 		px = int(m+(m+cs)*c)
 		py = int(m+(m+cs)*r)
 		self.win.blit(image, (px,py))
+		
+		# show HP
+		color = (0,255,0)
+		if unit.is_damaged():
+			color = (255,0,0)
+		font = pygame.font.SysFont(None, 32)
+		text = font.render(str(unit.hp), True, color)
+		text_pos = px, py
+		self.win.blit(text, text_pos)

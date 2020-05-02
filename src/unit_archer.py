@@ -5,6 +5,8 @@ class Archer(Unit):
 	def __init__(self, pos):
 		super().__init__(pos)
 		self.char = "A"
+		self.max_hp = 1
+		self.hp = self.max_hp
 
 	def get_moves(self):
 		moves = []

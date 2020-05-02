@@ -96,7 +96,10 @@ class Board():
 			raise Exception("Can not attack unit. Dest is empty")
 		
 		r, c = dest
-		self.cells[r][c] = None
+		dest_unit = self.cells[r][c]
+		dest_unit.receive_attack(1)
+		if dest_unit.hp <= 0:
+			self.cells[r][c] = None
 	
 	def __str__(self):
 		for r in range(self.size):
