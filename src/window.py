@@ -5,8 +5,10 @@ import pygame
 
 def init_image_dict():
 	d = {}
-	d["W"] = pygame.image.load("res/units/warrior_template.png")
-	d["A"] = pygame.image.load("res/units/archer_template.png")
+	d["W0"] = pygame.image.load("res/units/warrior_0.png")
+	d["A0"] = pygame.image.load("res/units/archer_0.png")
+	d["W1"] = pygame.image.load("res/units/warrior_1.png")
+	d["A1"] = pygame.image.load("res/units/archer_1.png")
 	return d
 
 class Window():
@@ -103,7 +105,7 @@ class Window():
 		cs = self.cell_size
 
 		r, c = unit.pos
-		image = self.img_dict[unit.char]
+		image = self.img_dict[unit.char + str(unit.team)]
 		image = pygame.transform.scale(image, (cs, cs))
 		
 		px = int(m+(m+cs)*c)

@@ -2,8 +2,8 @@ from unit import Unit
 
 class Warrior(Unit):
 	
-	def __init__(self, pos):
-		super().__init__(pos)
+	def __init__(self, pos, team):
+		super().__init__(pos, team)
 		self.char = "W"
 		self.max_hp = 2
 		self.hp = self.max_hp

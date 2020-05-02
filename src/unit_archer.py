@@ -2,8 +2,8 @@ from unit import Unit
 
 class Archer(Unit):
 	
-	def __init__(self, pos):
-		super().__init__(pos)
+	def __init__(self, pos, team):
+		super().__init__(pos, team)
 		self.char = "A"
 		self.max_hp = 1
 		self.hp = self.max_hp

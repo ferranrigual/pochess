@@ -62,6 +62,10 @@ class Board():
 			if self.cells[dr][dc] == None:
 				continue
 			
+			# check not same team
+			if unit.team == self.cells[dr][dc].team:
+				continue
+			
 			targets.append((dr, dc))
 		
 		return targets
@@ -97,7 +101,7 @@ class Board():
 		
 		r, c = dest
 		dest_unit = self.cells[r][c]
-		dest_unit.receive_attack(1)
+		unit.attack(dest_unit)
 		if dest_unit.hp <= 0:
 			self.cells[r][c] = None
 	

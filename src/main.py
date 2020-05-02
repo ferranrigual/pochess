@@ -17,22 +17,23 @@ if __name__ == "__main__":
 
 	pygame.event.set_blocked(pygame.MOUSEMOTION)
 
-	archer = Archer((0, 3))
+
+	archer = Archer((0, 3), 0)
 	board.add_unit(archer)
-	archer = Archer((0, 4))
+	archer = Archer((0, 4), 0)
 	board.add_unit(archer)
-	warrior = Warrior((1, 3))
+	warrior = Warrior((1, 3), 0)
 	board.add_unit(warrior)
-	warrior = Warrior((1, 4))
+	warrior = Warrior((1, 4), 0)
 	board.add_unit(warrior)
 
-	archer = Archer((7, 3))
+	archer = Archer((7, 3), 1)
 	board.add_unit(archer)
-	archer = Archer((7, 4))
+	archer = Archer((7, 4), 1)
 	board.add_unit(archer)
-	warrior = Warrior((6, 3))
+	warrior = Warrior((6, 3), 1)
 	board.add_unit(warrior)
-	warrior = Warrior((6, 4))
+	warrior = Warrior((6, 4), 1)
 	board.add_unit(warrior)
 
 	fps = 20
